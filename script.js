@@ -1,9 +1,15 @@
-function beforesubmit(){
-    let inputdate = document.querySelector(".inputdate")
-    let outputdate = document.querySelector(".outputdate")
-    console.log(inputdate.value)
-    let formattedDate = new Date(inputdate.value).toLocaleDateString("en-IN")
-    outputdate.value = formattedDate
+let captchachecked = false
+function beforesubmit(event){
+    if(captchachecked){
+        let inputdate = document.querySelector(".inputdate")
+        let outputdate = document.querySelector(".outputdate")
+        console.log(inputdate.value)
+        let formattedDate = new Date(inputdate.value).toLocaleDateString("en-IN")
+        outputdate.value = formattedDate
+    }else {
+        alert("Please check the ReCaptcha to submit the lead form")
+        event.preventDefault()
+    }
 }
 
 function timestamp() { 
@@ -14,3 +20,7 @@ function timestamp() {
      } }
      
 setInterval(timestamp, 500); 
+
+function captchasuccess(){
+    captchachecked = true
+}
